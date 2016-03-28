@@ -282,7 +282,7 @@
    * @returns void
    */
   function setup() {
-    var tmp = get('skin');
+    var tmp = "skin-black";
     if (tmp && $.inArray(tmp, my_skins))
       change_skin(tmp);
 

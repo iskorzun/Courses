@@ -26,12 +26,14 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+
+    Route::group(['middleware' => 'auth', 'as' => 'admin.'], function() {
+        Route::get('/admin', 'AdminController@index');
+    });
+
 
     Route::get('/home', 'HomeController@index');
 });

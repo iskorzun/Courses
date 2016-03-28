@@ -12,8 +12,18 @@ class LessonsFieldsAdd extends Migration
      */
     public function up()
     {
-        Schema::table('lessons', function (Blueprint $table) {
-            //
+        Schema::create('lessons', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description');
+            $table->text('full_description');
+            $table->integer('course_id');
+            $table->integer('lesson_type_id');
+            $table->integer('material_type_id');
+            $table->integer('stop_count')->default(1);
+            $table->integer('sort')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
