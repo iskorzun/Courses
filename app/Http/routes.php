@@ -43,7 +43,10 @@ Route::group(['middleware' => 'web'], function () {
     //Questions Controllers
     Route::get('/question/create', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
     Route::post('/question/store', ['uses' => 'QuestionController@store', 'as' => 'question.store']);
+    Route::post('/question/list', ['uses' => 'QuestionController@showList', 'as' => 'question.list']);
 
+    //Answers Controllers
+    Route::get('/answer/create', ['uses' => 'AnswerController@create', 'as' => 'answer.create']);
+    Route::post('/answer/store', ['uses' => 'AnswerController@store', 'as' => 'answer.store']);
 
-    Route::resource('answer', 'AnswerController');
 });

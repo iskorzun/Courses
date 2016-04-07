@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Controllers\Controller;
@@ -31,7 +30,7 @@ class QuestionController extends Controller {
   {
     $tests = Test::lists('title', 'id')->toArray();
    // dd($categories);
-    return view('admin.tests.question.create', compact('tests'));
+    return view('admin.tests.questions.create', compact('tests'));
   }
 
   /**
@@ -94,6 +93,12 @@ class QuestionController extends Controller {
   public function destroy($id)
   {
     
+  }
+
+  public function showList(Request $request) {
+    $test_id = $request->get('test_id');
+    $questions = Question::whereTestId($test_id)->get();
+    return $questions;
   }
   
 }

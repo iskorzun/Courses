@@ -1,4 +1,12 @@
-<?php namespace App\Http\Controllers;
+<?php
+namespace App\Http\Controllers;
+
+use App\Models\Answer;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\AnswerRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Test;
 
 class AnswerController extends Controller {
 
@@ -19,7 +27,8 @@ class AnswerController extends Controller {
    */
   public function create()
   {
-    
+    $tests = Test::all('title', 'id');
+    return view('admin.tests.answers.create', compact('tests'));
   }
 
   /**
@@ -27,9 +36,17 @@ class AnswerController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(AnswerRequest $request)
   {
-    
+    $test = new Answer(array(
+      'title' => $request->get('title'),
+      'question_id' => $request->get('question_id'),
+      'ball' => $request->get('ball'),
+    ));
+
+    $test->save();
+
+    return response()->json(['status' => 'success', 'title' => $request->get('title')]);
   }
 
   /**

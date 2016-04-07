@@ -10,4 +10,9 @@ class Question extends Model {
 	public $timestamps = true;
 	protected $fillable = array('title', 'type', 'test_id', 'sort');
 
+	public function test()
+    {
+		return $this->belongsTo(Test::class);
+    }
+
 }
