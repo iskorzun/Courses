@@ -31,9 +31,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::group(['middleware' => 'auth', 'as' => 'admin.'], function() {
-        Route::get('/admin', 'AdminController@index');
+        Route::get('/admin', ['uses' => 'AdminController@index', 'as' => 'main']);
     });
 
 
     Route::get('/home', 'HomeController@index');
+
+    //Test Controllers
+    Route::get('/test/create', ['uses' => 'TestController@create', 'as' => 'test.create']);
+    Route::post('/test/store', ['uses' => 'TestController@store', 'as' => 'test.store']);
+    //Questions Controllers
+    Route::get('/question/create', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
+    Route::post('/question/store', ['uses' => 'QuestionController@store', 'as' => 'question.store']);
+
+
+    Route::resource('answer', 'AnswerController');
 });

@@ -1,4 +1,14 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use DB;
+use App\Http\Requests;
+use App\Http\Requests\TestRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Test;
 
 class TestController extends Controller {
 
@@ -9,7 +19,7 @@ class TestController extends Controller {
    */
   public function index()
   {
-    
+    dd(213234234);
   }
 
   /**
@@ -19,7 +29,10 @@ class TestController extends Controller {
    */
   public function create()
   {
-    
+
+    $categories = Category::lists('title', 'id')->toArray();
+   // dd($categories);
+    return view('admin.tests.create', compact('categories'));
   }
 
   /**
@@ -27,9 +40,18 @@ class TestController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(TestRequest $request)
   {
-    
+    //dd($request->get('title'));
+    $test = new Test(array(
+      'title' => $request->get('title'),
+      'description' => $request->get('description'),
+      'category_id' => $request->get('category_id'),
+    ));
+
+    $test->save();
+
+    return \Redirect::route('test.create');
   }
 
   /**

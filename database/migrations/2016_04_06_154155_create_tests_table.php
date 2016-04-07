@@ -11,7 +11,7 @@ class CreateTestsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->text('description');
-			$table->smallInteger('t_category_id');
+			$table->smallInteger('category_id');
 			$table->timestamps();
 			$table->softDeletes();
 			$table->mediumInteger('sort')->unsigned()->index()->default('1');

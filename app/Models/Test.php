@@ -1,11 +1,12 @@
 <?php
 
-namespace App/Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends Model {
+
 
 	protected $table = 'tests';
 	public $timestamps = true;
@@ -13,6 +14,6 @@ class Test extends Model {
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $fillable = array('title', 'description', 't_category_id', 'sort');
+	protected $fillable = array('title', 'description', 'category_id', 'sort');
 
 }

@@ -1,4 +1,14 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Requests\QuestionRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Models\Test;
 
 class QuestionController extends Controller {
 
@@ -19,7 +29,9 @@ class QuestionController extends Controller {
    */
   public function create()
   {
-    
+    $tests = Test::lists('title', 'id')->toArray();
+   // dd($categories);
+    return view('admin.tests.question.create', compact('tests'));
   }
 
   /**
@@ -27,9 +39,17 @@ class QuestionController extends Controller {
    *
    * @return Response
    */
-  public function store()
+  public function store(QuestionRequest $request)
   {
-    
+    $test = new Question(array(
+      'title' => $request->get('title'),
+      'test_id' => $request->get('test_id'),
+      'type' => $request->get('type'),
+    ));
+
+    $test->save();
+
+    return \Redirect::route('question.create');
   }
 
   /**
