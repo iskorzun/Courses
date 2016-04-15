@@ -40,6 +40,8 @@ Route::group(['middleware' => 'web'], function () {
     //Test Controllers
     Route::get('/test/create', ['uses' => 'TestController@create', 'as' => 'test.create']);
     Route::post('/test/store', ['uses' => 'TestController@store', 'as' => 'test.store']);
+    Route::get('/test/show/{id}', ['uses' => 'TestController@show', 'as' => 'test.show']);
+    Route::post('/test/data', ['uses' => 'TestController@data', 'as' => 'test.data']);
     //Questions Controllers
     Route::get('/question/create', ['uses' => 'QuestionController@create', 'as' => 'question.create']);
     Route::post('/question/store', ['uses' => 'QuestionController@store', 'as' => 'question.store']);

@@ -265,6 +265,7 @@
                 <li><a href="{{ route('test.create') }}"><i class="fa fa-circle-o text-red"></i> Создать тест</a></li>
                 <li><a href="{{ route('question.create') }}"><i class="fa fa-circle-o text-yellow"></i> Создать вопрос для теста</a></li>
                 <li><a href="{{ route('answer.create') }}"><i class="fa fa-circle-o text-purple"></i> Создать вопрос для теста</a></li>
+                <li><a href="{{ route('test.show', ['id' => '1']) }}"><i class="fa fa-circle-o text-purple"></i> Запустить тест</a></li>
               </ul>
             </li>
 
